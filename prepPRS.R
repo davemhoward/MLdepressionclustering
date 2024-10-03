@@ -43,4 +43,4 @@ PGS<- PGS %>% mutate(BIP_phi_auto = coalesce(AFR_BIP_phi_auto,AMR_BIP_phi_auto,C
 PGS<- PGS %>% mutate(SCZ_phi_auto = coalesce(AFR_SCZ_phi_auto,AMR_SCZ_phi_auto,CSA_SCZ_phi_auto,EAS_SCZ_phi_auto,EUR_SCZ_phi_auto,MID_SCZ_phi_auto))
 PGS<- PGS %>% mutate(ADHD_phi_auto = coalesce(AFR_ADHD_phi_auto,AMR_ADHD_phi_auto,CSA_ADHD_phi_auto,EAS_ADHD_phi_auto,EUR_ADHD_phi_auto,MID_ADHD_phi_auto))
 
-write.table(PGS[,c("f.eid","Age.At.MHQ","Age.At.WBQ","Sex","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","BIP_phi_auto","SCZ_phi_auto","ADHD_phi_auto")], "PRS.txt", row.names=F, col.name=T, quote=F)
+write.table(PGS[,c("f.eid","Age.At.MHQ","Age.At.WBQ","Sex","V2","V3","V4","V5","V6","V7","V8","V9","V10","V11","ancestry","BIP_phi_auto","SCZ_phi_auto","ADHD_phi_auto")], "PRS.txt", row.names=F, col.name=T, quote=F)

@@ -109,4 +109,4 @@ data$trd[which(data$f.eid %in% trd_assessed$eid)]<-0  ## Any individuals assesse
 data$trd[which(data$f.eid %in% trd_case$eid)]<-1  ## The set any TRD case individuals as 1
 
 ## output demographics
-write.table(data[,c(1,899:922)],"MHQ_demographics.txt",quote=F,row.names=F)
+write.table(data[,c(1,905:922)],"MHQ_demographics.txt",quote=F,row.names=F)

@@ -1,4 +1,4 @@
-## Run Benoulli mixsture models and create heatmaps of symptoms clusters
+## Run Benoulli mixture models and create heatmaps of symptoms clusters
 
 library(comato)
 

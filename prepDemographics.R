@@ -24,7 +24,7 @@ data$Age.At.WBQ<-as.numeric(with(data, ifelse(is.na(f.29197.0.0),f.21003.0.0 + c
 data$Sex<-with(data, ifelse(is.na(f.31.0.0) | f.31.0.0 < 0, NA,
 		      		ifelse(!is.na(f.31.0.0), f.31.0.0, NA))) 
 
-### Define Ethnicity and Migrant status (0 = born in Britain, 1 = born elsewhere) fields
+### Define Ethnicity and birth place (0 = born in Britain, 1 = born elsewhere) fields
 
 data$Ethnicity<-ordered(with(data, ifelse(is.na(f.21000.0.0) | f.21000.0.0 < 0, NA,
               		 	 	   ifelse(!is.na(f.21000.0.0) & f.21000.0.0 > 1000 & f.21000.0.0 < 1999, "White",

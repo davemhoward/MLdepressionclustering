@@ -1,3 +1,6 @@
+## generate groups for analysis
+## based on code available here: https://data.mendeley.com/datasets/kv677c2th4/3 to define UK Biobank depression from this paper: doi:10.1192/bjo.2019.100
+
 library(data.table)
 library(Hmisc)
 library(stringi)
@@ -7,13 +10,10 @@ data<-readRDS("depressionsymptoms.rds")
 colnames(data) <- paste('f.', colnames(data), sep = '')
 colnames(data) <- gsub("-", ".", colnames(data))
 
-for (n in 2:42) {
-data[,n]<-as.numeric(unlist(data[,n]))
-}
-
-exclude<-read.table("sczbpcases.txt",header=F)
+exclude<-read.table("sczbpcases.txt",header=F) 
 nrow(exclude)
 
+## remove schizophrenia and bipolar cases
 data<-data[which(!(data$f.eid %in% exclude$V1)),]
 
 ## MHQ PHQ9
@@ -106,14 +106,12 @@ data$CIDI.MDD.Case[which(data$CIDI.MDD.Screen==1 & data$CIDI.MDD.Response > 4)]<
 data$wbCIDI.MDD.No.Info<-with(data,ifelse(((is.na(f.29011.0.0) | f.29011.0.0 < 0) &
 				       (is.na(f.29012.0.0) | f.29012.0.0 < 0 )), 1, 0))
 
-## Need to figure out coding criteria from here
 
 data$wbCIDI.MDD.Screen<-with(data,ifelse(((!is.na(f.29011.0.0) & f.29011.0.0 == 1) |
 			              (!is.na(f.29012.0.0) & f.29012.0.0 == 1)) &
 				     (!is.na(f.29014.0.0) & (f.29014.0.0 == 1 | f.29014.0.0 == 0)) &   ## 29014 scored as fraction of day as all of the day (0) or most of the day (1)
 				     (!is.na(f.29015.0.0) & (f.29015.0.0 == 1 | f.29015.0.0 == 0)) &   ## 29015 scored as freq as everyday (0) or almost every day (1)
 				     (!is.na(f.29031.0.0) & (f.29031.0.0 == 1 | f.29031.0.0 == 0)), 1, 0)) ## 20931 scoreas as impact as somewhat (1) of a lot (0)
-
 
 
 data$wbCIDI.MDD.Response<-0
@@ -142,18 +140,22 @@ data$any<-with(data, ifelse((!is.na(PHQ9.Case) & PHQ9.Case == 1) |
 					    (!is.na(wbPHQ9.Case) & wbPHQ9.Case == 1), 1, 0))
 
 
-
+## Group A is currently depressed in Q1
 groupA<-data[which(data$PHQ9.Case == 1),]
 groupB<-data[which(data$PHQ9.Case == 1),]
 cidigroup<-data[which(data$PHQ9.Case == 0 & (data$CIDI.MDD.Case == 1 | data$wbCIDI.MDD.Case == 1) & data$wbPHQ9.Case == 0),]
 set.seed(1234)
 cidigroup$random<-round(runif(nrow(cidigroup)))
 groupC<-cidigroup[which((cidigroup$CIDI.MDD.Case == 1 & cidigroup$wbCIDI.MDD.Case == 0) | (cidigroup$CIDI.MDD.Case == 1 & cidigroup$random == 0)),]
+## Group D is ever depressed in Q1
 groupD<-cidigroup[which((cidigroup$CIDI.MDD.Case == 1 & cidigroup$wbCIDI.MDD.Case == 0) | (cidigroup$CIDI.MDD.Case == 1 & cidigroup$random == 0)),]
 groupG<-cidigroup[which((cidigroup$CIDI.MDD.Case == 0 & cidigroup$wbCIDI.MDD.Case == 1) | (cidigroup$wbCIDI.MDD.Case == 1 & cidigroup$random == 1)),]
 groupH<-cidigroup[which((cidigroup$CIDI.MDD.Case == 0 & cidigroup$wbCIDI.MDD.Case == 1) | (cidigroup$wbCIDI.MDD.Case == 1 & cidigroup$random == 1)),]
+## Group E is currently depressed in Q2
 groupE<-data[which(data$wbPHQ9.Case == 1 & data$PHQ9.Case == 0),]
 groupF<-data[which(data$wbPHQ9.Case == 1 & data$PHQ9.Case == 0),]
+
+## Group H is ever depressed in Q2
 
 nrow(groupA)
 table(groupA$f.31.0.0)

@@ -140,369 +140,169 @@ data$any<-with(data, ifelse((!is.na(PHQ9.Case) & PHQ9.Case == 1) |
 					    (!is.na(wbPHQ9.Case) & wbPHQ9.Case == 1), 1, 0))
 
 
-## Group A is currently depressed in Q1
-groupA<-data[which(data$PHQ9.Case == 1),]
-groupB<-data[which(data$PHQ9.Case == 1),]
+## Currently depressed in Q1
+
+currentQ1<-data[which(data$PHQ9.Case == 1),]
+currentQ1$f.20514.0.0[which(currentQ1$f.20514.0.0 < 0)]<-NA
+currentQ1$f.20514.0.0[which(currentQ1$f.20514.0.0 < 3)]<-0
+currentQ1$f.20514.0.0[which(currentQ1$f.20514.0.0 >= 3)]<-1
+currentQ1$f.20507.0.0[which(currentQ1$f.20507.0.0 < 0)]<-NA
+currentQ1$f.20507.0.0[which(currentQ1$f.20507.0.0 < 3)]<-0
+currentQ1$f.20507.0.0[which(currentQ1$f.20507.0.0 >= 3)]<-1
+currentQ1$f.20510.0.0[which(currentQ1$f.20510.0.0 < 0)]<-NA
+currentQ1$f.20510.0.0[which(currentQ1$f.20510.0.0 < 3)]<-0
+currentQ1$f.20510.0.0[which(currentQ1$f.20510.0.0 >= 3)]<-1
+currentQ1$f.20508.0.0[which(currentQ1$f.20508.0.0 < 0)]<-NA
+currentQ1$f.20508.0.0[which(currentQ1$f.20508.0.0 < 3)]<-0
+currentQ1$f.20508.0.0[which(currentQ1$f.20508.0.0 >= 3)]<-1
+currentQ1$f.20517.0.0[which(currentQ1$f.20517.0.0 < 0)]<-NA
+currentQ1$f.20517.0.0[which(currentQ1$f.20517.0.0 < 3)]<-0
+currentQ1$f.20517.0.0[which(currentQ1$f.20517.0.0 >= 3)]<-1
+currentQ1$f.20518.0.0[which(currentQ1$f.20518.0.0 < 0)]<-NA
+currentQ1$f.20518.0.0[which(currentQ1$f.20518.0.0 < 3)]<-0
+currentQ1$f.20518.0.0[which(currentQ1$f.20518.0.0 >= 3)]<-1
+currentQ1$f.20519.0.0[which(currentQ1$f.20519.0.0 < 0)]<-NA
+currentQ1$f.20519.0.0[which(currentQ1$f.20519.0.0 < 3)]<-0
+currentQ1$f.20519.0.0[which(currentQ1$f.20519.0.0 >= 3)]<-1
+currentQ1$f.20511.0.0[which(currentQ1$f.20511.0.0 < 0)]<-NA
+currentQ1$f.20511.0.0[which(currentQ1$f.20511.0.0 < 3)]<-0
+currentQ1$f.20511.0.0[which(currentQ1$f.20511.0.0 >= 3)]<-1
+currentQ1$f.20513.0.0[which(currentQ1$f.20513.0.0 < 0)]<-NA
+currentQ1$f.20513.0.0[which(currentQ1$f.20513.0.0 < 2)]<-0
+currentQ1$f.20513.0.0[which(currentQ1$f.20513.0.0 >= 2)]<-1
+
+row.names(currentQ1)<-currentQ1$f.eid
+
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20514.0.0")]<-"Lack of interest or pleasure"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20510.0.0")]<-"Feelings of depression"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20519.0.0")]<-"Tiredness or low energy"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20517.0.0")]<-"Over or under sleeping"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20507.0.0")]<-"Feelings of inadequacy"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20508.0.0")]<-"Trouble concentrating"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20511.0.0")]<-"Changes in appetite"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20513.0.0")]<-"Suicidal thoughts or self-harm"
+colnames(currentQ1)[which(colnames(currentQ1) == "f.20518.0.0")]<-"Psychomotor changes"
+
+saveRDS(currentQ1[,c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"currentQ1.rds")
+
+
+## Currently depressed in Q2
+
+currentQ2<-data[which(data$wbPHQ9.Case == 1 & data$PHQ9.Case == 0),]
+currentQ2$f.29002.0.0[which(currentQ2$f.29002.0.0 < 0)]<-NA
+currentQ2$f.29002.0.0[which(currentQ2$f.29002.0.0 < 2)]<-0
+currentQ2$f.29002.0.0[which(currentQ2$f.29002.0.0 >= 2)]<-1
+currentQ2$f.29007.0.0[which(currentQ2$f.29007.0.0 < 0)]<-NA
+currentQ2$f.29007.0.0[which(currentQ2$f.29007.0.0 < 2)]<-0
+currentQ2$f.29007.0.0[which(currentQ2$f.29007.0.0 >= 2)]<-1
+currentQ2$f.29003.0.0[which(currentQ2$f.29003.0.0 < 0)]<-NA
+currentQ2$f.29003.0.0[which(currentQ2$f.29003.0.0 < 2)]<-0
+currentQ2$f.29003.0.0[which(currentQ2$f.29003.0.0 >= 2)]<-1
+currentQ2$f.29008.0.0[which(currentQ2$f.29008.0.0 < 0)]<-NA
+currentQ2$f.29008.0.0[which(currentQ2$f.29008.0.0 < 2)]<-0
+currentQ2$f.29008.0.0[which(currentQ2$f.29008.0.0 >= 2)]<-1
+currentQ2$f.29004.0.0[which(currentQ2$f.29004.0.0 < 0)]<-NA
+currentQ2$f.29004.0.0[which(currentQ2$f.29004.0.0 < 2)]<-0
+currentQ2$f.29004.0.0[which(currentQ2$f.29004.0.0 >= 2)]<-1
+currentQ2$f.29009.0.0[which(currentQ2$f.29009.0.0 < 0)]<-NA
+currentQ2$f.29009.0.0[which(currentQ2$f.29009.0.0 < 2)]<-0
+currentQ2$f.29009.0.0[which(currentQ2$f.29009.0.0 >= 2)]<-1
+currentQ2$f.29005.0.0[which(currentQ2$f.29005.0.0 < 0)]<-NA
+currentQ2$f.29005.0.0[which(currentQ2$f.29005.0.0 < 2)]<-0
+currentQ2$f.29005.0.0[which(currentQ2$f.29005.0.0 >= 2)]<-1
+currentQ2$f.29006.0.0[which(currentQ2$f.29006.0.0 < 0)]<-NA
+currentQ2$f.29006.0.0[which(currentQ2$f.29006.0.0 < 2)]<-0
+currentQ2$f.29006.0.0[which(currentQ2$f.29006.0.0 >= 2)]<-1
+currentQ2$f.29010.0.0[which(currentQ2$f.29010.0.0 < 0)]<-NA
+currentQ2$f.29010.0.0[which(currentQ2$f.29010.0.0 >= 1)]<-1
+
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29002.0.0")]<-"Lack of interest or pleasure"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29003.0.0")]<-"Feelings of depression"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29005.0.0")]<-"Tiredness or low energy"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29004.0.0")]<-"Over or under sleeping"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29007.0.0")]<-"Feelings of inadequacy"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29008.0.0")]<-"Trouble concentrating"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29006.0.0")]<-"Changes in appetite"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29010.0.0")]<-"Suicidal thoughts or self-harm"
+colnames(currentQ2)[which(colnames(currentQ2) == "f.29009.0.0")]<-"Psychomotor changes"
+
+row.names(currentQ2)<-currentQ2$f.eid
+
+saveRDS(currentQ2[,c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"currentQ2.rds")
+
+
 cidigroup<-data[which(data$PHQ9.Case == 0 & (data$CIDI.MDD.Case == 1 | data$wbCIDI.MDD.Case == 1) & data$wbPHQ9.Case == 0),]
 set.seed(1234)
 cidigroup$random<-round(runif(nrow(cidigroup)))
-groupC<-cidigroup[which((cidigroup$CIDI.MDD.Case == 1 & cidigroup$wbCIDI.MDD.Case == 0) | (cidigroup$CIDI.MDD.Case == 1 & cidigroup$random == 0)),]
-## Group D is ever depressed in Q1
-groupD<-cidigroup[which((cidigroup$CIDI.MDD.Case == 1 & cidigroup$wbCIDI.MDD.Case == 0) | (cidigroup$CIDI.MDD.Case == 1 & cidigroup$random == 0)),]
-groupG<-cidigroup[which((cidigroup$CIDI.MDD.Case == 0 & cidigroup$wbCIDI.MDD.Case == 1) | (cidigroup$wbCIDI.MDD.Case == 1 & cidigroup$random == 1)),]
-groupH<-cidigroup[which((cidigroup$CIDI.MDD.Case == 0 & cidigroup$wbCIDI.MDD.Case == 1) | (cidigroup$wbCIDI.MDD.Case == 1 & cidigroup$random == 1)),]
-## Group E is currently depressed in Q2
-groupE<-data[which(data$wbPHQ9.Case == 1 & data$PHQ9.Case == 0),]
-groupF<-data[which(data$wbPHQ9.Case == 1 & data$PHQ9.Case == 0),]
 
-## Group H is ever depressed in Q2
+## Ever depressed in Q1
 
-nrow(groupA)
-table(groupA$f.31.0.0)
-nrow(groupB)
-table(groupB$f.31.0.0)
-nrow(groupC)
-table(groupC$f.31.0.0)
-nrow(groupD)
-table(groupD$f.31.0.0)
-nrow(groupE)
-table(groupE$f.31.0.0)
-nrow(groupF)
-table(groupF$f.31.0.0)
-nrow(groupG)
-table(groupG$f.31.0.0)
-nrow(groupH)
-table(groupH$f.31.0.0)
+everQ1<-cidigroup[which((cidigroup$CIDI.MDD.Case == 1 & cidigroup$wbCIDI.MDD.Case == 0) | (cidigroup$CIDI.MDD.Case == 1 & cidigroup$random == 0)),]
+
+everQ1$f.20446.0.0[which(everQ1$f.20446.0.0 < 0)]<-NA
+everQ1$f.20441.0.0[which(everQ1$f.20441.0.0 < 0)]<-NA
+everQ1$f.20449.0.0[which(everQ1$f.20449.0.0 < 0)]<-NA
+everQ1$f.20536.gain<-NA
+everQ1$f.20536.gain[which(everQ1$f.20536.0.0 == 0)]<-0
+everQ1$f.20536.gain[which(everQ1$f.20536.0.0 == 1)]<-1
+everQ1$f.20536.gain[which(everQ1$f.20536.0.0 == 2)]<-0
+everQ1$f.20536.loss<-NA
+everQ1$f.20536.loss[which(everQ1$f.20536.0.0 == 0)]<-0
+everQ1$f.20536.loss[which(everQ1$f.20536.0.0 == 1)]<-0
+everQ1$f.20536.loss[which(everQ1$f.20536.0.0 == 2)]<-1
+everQ1$f.20435.0.0[which(everQ1$f.20435.0.0 < 0)]<-NA
+everQ1$f.20450.0.0[which(everQ1$f.20450.0.0 < 0)]<-NA
+everQ1$f.20437.0.0[which(everQ1$f.20437.0.0 < 0)]<-NA
 
 
-## GroupA MHQ PHQ Binary
+colnames(everQ1)[which(colnames(everQ1) == "f.20446.0.0")]<-"Feelings of depression"
+colnames(everQ1)[which(colnames(everQ1) == "f.20441.0.0")]<-"Loss of interest in normal activities"
+colnames(everQ1)[which(colnames(everQ1) == "f.20449.0.0")]<-"Feelings of tiredness"
+colnames(everQ1)[which(colnames(everQ1) == "f.20536.gain")]<-"Gained weight"
+colnames(everQ1)[which(colnames(everQ1) == "f.20536.loss")]<-"Lost weight"
+colnames(everQ1)[which(colnames(everQ1) == "f.20533.0.0")]<-"Trouble falling asleep"
+colnames(everQ1)[which(colnames(everQ1) == "f.20534.0.0")]<-"Sleeping too much"
+colnames(everQ1)[which(colnames(everQ1) == "f.20535.0.0")]<-"Waking too early"
+colnames(everQ1)[which(colnames(everQ1) == "f.20435.0.0")]<-"Difficulty concentrating"
+colnames(everQ1)[which(colnames(everQ1) == "f.20450.0.0")]<-"Feelings of worthlessness"
+colnames(everQ1)[which(colnames(everQ1) == "f.20437.0.0")]<-"Thoughts of death"
 
-groupA$f.20514.0.0[which(groupA$f.20514.0.0 < 0)]<-NA
-groupA$f.20514.0.0[which(groupA$f.20514.0.0 < 3)]<-0
-groupA$f.20514.0.0[which(groupA$f.20514.0.0 >= 3)]<-1
-groupA$f.20507.0.0[which(groupA$f.20507.0.0 < 0)]<-NA
-groupA$f.20507.0.0[which(groupA$f.20507.0.0 < 3)]<-0
-groupA$f.20507.0.0[which(groupA$f.20507.0.0 >= 3)]<-1
-groupA$f.20510.0.0[which(groupA$f.20510.0.0 < 0)]<-NA
-groupA$f.20510.0.0[which(groupA$f.20510.0.0 < 3)]<-0
-groupA$f.20510.0.0[which(groupA$f.20510.0.0 >= 3)]<-1
-groupA$f.20508.0.0[which(groupA$f.20508.0.0 < 0)]<-NA
-groupA$f.20508.0.0[which(groupA$f.20508.0.0 < 3)]<-0
-groupA$f.20508.0.0[which(groupA$f.20508.0.0 >= 3)]<-1
-groupA$f.20517.0.0[which(groupA$f.20517.0.0 < 0)]<-NA
-groupA$f.20517.0.0[which(groupA$f.20517.0.0 < 3)]<-0
-groupA$f.20517.0.0[which(groupA$f.20517.0.0 >= 3)]<-1
-groupA$f.20518.0.0[which(groupA$f.20518.0.0 < 0)]<-NA
-groupA$f.20518.0.0[which(groupA$f.20518.0.0 < 3)]<-0
-groupA$f.20518.0.0[which(groupA$f.20518.0.0 >= 3)]<-1
-groupA$f.20519.0.0[which(groupA$f.20519.0.0 < 0)]<-NA
-groupA$f.20519.0.0[which(groupA$f.20519.0.0 < 3)]<-0
-groupA$f.20519.0.0[which(groupA$f.20519.0.0 >= 3)]<-1
-groupA$f.20511.0.0[which(groupA$f.20511.0.0 < 0)]<-NA
-groupA$f.20511.0.0[which(groupA$f.20511.0.0 < 3)]<-0
-groupA$f.20511.0.0[which(groupA$f.20511.0.0 >= 3)]<-1
-groupA$f.20513.0.0[which(groupA$f.20513.0.0 < 0)]<-NA
-groupA$f.20513.0.0[which(groupA$f.20513.0.0 < 2)]<-0
-groupA$f.20513.0.0[which(groupA$f.20513.0.0 >= 2)]<-1
+row.names(everQ1)<-everQ1$f.eid
 
-row.names(groupA)<-groupA$f.eid
-
-colnames(groupA)[which(colnames(groupA) == "f.20514.0.0")]<-"Lack of interest or pleasure"
-colnames(groupA)[which(colnames(groupA) == "f.20510.0.0")]<-"Feelings of depression"
-colnames(groupA)[which(colnames(groupA) == "f.20519.0.0")]<-"Tiredness or low energy"
-colnames(groupA)[which(colnames(groupA) == "f.20517.0.0")]<-"Over or under sleeping"
-colnames(groupA)[which(colnames(groupA) == "f.20507.0.0")]<-"Feelings of inadequacy"
-colnames(groupA)[which(colnames(groupA) == "f.20508.0.0")]<-"Trouble concentrating"
-colnames(groupA)[which(colnames(groupA) == "f.20511.0.0")]<-"Changes in appetite"
-colnames(groupA)[which(colnames(groupA) == "f.20513.0.0")]<-"Suicidal thoughts or self-harm"
-colnames(groupA)[which(colnames(groupA) == "f.20518.0.0")]<-"Psychomotor changes"
-
-saveRDS(groupA[,c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"groupA.rds")
-saveRDS(groupA[which(groupA$f.31.0.0 == 1),c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"groupAmales.rds")
-saveRDS(groupA[which(groupA$f.31.0.0 == 0),c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"groupAfemales.rds")
-
-## GroupB MHQ PHQ Ordinal
-
-groupB$f.20514.0.0[which(groupB$f.20514.0.0 < 0)]<-NA
-groupB$f.20507.0.0[which(groupB$f.20507.0.0 < 0)]<-NA
-groupB$f.20510.0.0[which(groupB$f.20510.0.0 < 0)]<-NA
-groupB$f.20508.0.0[which(groupB$f.20508.0.0 < 0)]<-NA
-groupB$f.20517.0.0[which(groupB$f.20517.0.0 < 0)]<-NA
-groupB$f.20518.0.0[which(groupB$f.20518.0.0 < 0)]<-NA
-groupB$f.20519.0.0[which(groupB$f.20519.0.0 < 0)]<-NA
-groupB$f.20511.0.0[which(groupB$f.20511.0.0 < 0)]<-NA
-groupB$f.20513.0.0[which(groupB$f.20513.0.0 < 0)]<-NA
-
-row.names(groupB)<-groupB$f.eid
-
-saveRDS(groupB[,c("f.20514.0.0","f.20507.0.0","f.20510.0.0","f.20508.0.0","f.20517.0.0","f.20518.0.0","f.20519.0.0","f.20511.0.0","f.20513.0.0")],"groupB.rds")
-saveRDS(groupB[which(groupB$f.31.0.0 == 1),c("f.20514.0.0","f.20507.0.0","f.20510.0.0","f.20508.0.0","f.20517.0.0","f.20518.0.0","f.20519.0.0","f.20511.0.0","f.20513.0.0")],"groupBmales.rds")
-saveRDS(groupB[which(groupB$f.31.0.0 == 0),c("f.20514.0.0","f.20507.0.0","f.20510.0.0","f.20508.0.0","f.20517.0.0","f.20518.0.0","f.20519.0.0","f.20511.0.0","f.20513.0.0")],"groupBfemales.rds")
-
-## GroupC MHQ CIDI 8 questions
-
-groupC$f.20446.0.0[which(groupC$f.20446.0.0 < 0)]<-NA
-groupC$f.20441.0.0[which(groupC$f.20441.0.0 < 0)]<-NA
-groupC$f.20449.0.0[which(groupC$f.20449.0.0 < 0)]<-NA
-groupC$f.20536.0.0[which(groupC$f.20536.0.0 < 0)]<-NA
-groupC$f.20536.0.0[which(groupC$f.20536.0.0 >= 1)]<-1
-groupC$f.20532.0.0[which(groupC$f.20532.0.0 < 0)]<-NA
-groupC$f.20435.0.0[which(groupC$f.20435.0.0 < 0)]<-NA
-groupC$f.20450.0.0[which(groupC$f.20450.0.0 < 0)]<-NA
-groupC$f.20437.0.0[which(groupC$f.20437.0.0 < 0)]<-NA
-
-colnames(groupC)[which(colnames(groupC) == "f.20441.0.0")]<-"Loss of interest in normal activities"
-colnames(groupC)[which(colnames(groupC) == "f.20446.0.0")]<-"Feelings of depression"
-colnames(groupC)[which(colnames(groupC) == "f.20449.0.0")]<-"Feelings of tiredness"
-colnames(groupC)[which(colnames(groupC) == "f.20532.0.0")]<-"Sleep changes"
-colnames(groupC)[which(colnames(groupC) == "f.20450.0.0")]<-"Feelings of worthlessness"
-colnames(groupC)[which(colnames(groupC) == "f.20435.0.0")]<-"Difficulty concentrating"
-colnames(groupC)[which(colnames(groupC) == "f.20536.0.0")]<-"Weight changes"
-colnames(groupC)[which(colnames(groupC) == "f.20437.0.0")]<-"Thoughts of death"
-
-row.names(groupC)<-groupC$f.eid
-
-saveRDS(groupC[,c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Sleep changes","Feelings of worthlessness","Difficulty concentrating","Weight changes","Thoughts of death")],"groupC.rds")
-saveRDS(groupC[which(groupC$f.31.0.0 == 1),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Sleep changes","Feelings of worthlessness","Difficulty concentrating","Weight changes","Thoughts of death")],"groupCmales.rds")
-saveRDS(groupC[which(groupC$f.31.0.0 == 0),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Sleep changes","Feelings of worthlessness","Difficulty concentrating","Weight changes","Thoughts of death")],"groupCfemales.rds")
-
-## GroupD MHQ CIDI 11 questions
-
-groupD$f.20446.0.0[which(groupD$f.20446.0.0 < 0)]<-NA
-groupD$f.20441.0.0[which(groupD$f.20441.0.0 < 0)]<-NA
-groupD$f.20449.0.0[which(groupD$f.20449.0.0 < 0)]<-NA
-groupD$f.20536.gain<-NA
-groupD$f.20536.gain[which(groupD$f.20536.0.0 == 0)]<-0
-groupD$f.20536.gain[which(groupD$f.20536.0.0 == 1)]<-1
-groupD$f.20536.gain[which(groupD$f.20536.0.0 == 2)]<-0
-groupD$f.20536.loss<-NA
-groupD$f.20536.loss[which(groupD$f.20536.0.0 == 0)]<-0
-groupD$f.20536.loss[which(groupD$f.20536.0.0 == 1)]<-0
-groupD$f.20536.loss[which(groupD$f.20536.0.0 == 2)]<-1
-groupD$f.20435.0.0[which(groupD$f.20435.0.0 < 0)]<-NA
-groupD$f.20450.0.0[which(groupD$f.20450.0.0 < 0)]<-NA
-groupD$f.20437.0.0[which(groupD$f.20437.0.0 < 0)]<-NA
+saveRDS(everQ1[,c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"everQ1.rds")
 
 
-colnames(groupD)[which(colnames(groupD) == "f.20446.0.0")]<-"Feelings of depression"
-colnames(groupD)[which(colnames(groupD) == "f.20441.0.0")]<-"Loss of interest in normal activities"
-colnames(groupD)[which(colnames(groupD) == "f.20449.0.0")]<-"Feelings of tiredness"
-colnames(groupD)[which(colnames(groupD) == "f.20536.gain")]<-"Gained weight"
-colnames(groupD)[which(colnames(groupD) == "f.20536.loss")]<-"Lost weight"
-colnames(groupD)[which(colnames(groupD) == "f.20533.0.0")]<-"Trouble falling asleep"
-colnames(groupD)[which(colnames(groupD) == "f.20534.0.0")]<-"Sleeping too much"
-colnames(groupD)[which(colnames(groupD) == "f.20535.0.0")]<-"Waking too early"
-colnames(groupD)[which(colnames(groupD) == "f.20435.0.0")]<-"Difficulty concentrating"
-colnames(groupD)[which(colnames(groupD) == "f.20450.0.0")]<-"Feelings of worthlessness"
-colnames(groupD)[which(colnames(groupD) == "f.20437.0.0")]<-"Thoughts of death"
+## Ever depressed in Q2
 
-row.names(groupD)<-groupD$f.eid
+everQ2<-cidigroup[which((cidigroup$CIDI.MDD.Case == 0 & cidigroup$wbCIDI.MDD.Case == 1) | (cidigroup$wbCIDI.MDD.Case == 1 & cidigroup$random == 1)),]
 
-saveRDS(groupD[,c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"groupD.rds")
-saveRDS(groupD[which(groupD$f.31.0.0 == 1),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"groupDmales.rds")
-saveRDS(groupD[which(groupD$f.31.0.0 == 0),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"groupDfemales.rds")
+everQ2$f.29011.0.0[which(everQ2$f.29011.0.0 < 0)]<-NA
+everQ2$f.29012.0.0[which(everQ2$f.29012.0.0 < 0)]<-NA
+everQ2$f.29018.0.0[which(everQ2$f.29018.0.0 < 0)]<-NA
+everQ2$f.29021.gain<-NA
+everQ2$f.29021.gain[which(everQ2$f.29021.0.0 == 0)]<-1
+everQ2$f.29021.gain[which(everQ2$f.29021.0.0 == 1)]<-0
+everQ2$f.29021.gain[which(everQ2$f.29021.0.0 == 3)]<-0
+everQ2$f.29021.loss<-NA
+everQ2$f.29021.loss[which(everQ2$f.29021.0.0 == 0)]<-0
+everQ2$f.29021.loss[which(everQ2$f.29021.0.0 == 1)]<-1
+everQ2$f.29021.loss[which(everQ2$f.29021.0.0 == 3)]<-0
+everQ2$f.29026.0.0[which(everQ2$f.29026.0.0 < 0)]<-NA
+everQ2$f.29027.0.0[which(everQ2$f.29027.0.0 < 0)]<-NA
+everQ2$f.29029.0.0[which(everQ2$f.29029.0.0 < 0)]<-NA
 
-## GroupE Well-being PHQ Binary
+colnames(everQ2)[which(colnames(everQ2) == "f.29011.0.0")]<-"Feelings of depression"
+colnames(everQ2)[which(colnames(everQ2) == "f.29012.0.0")]<-"Loss of interest in normal activities"
+colnames(everQ2)[which(colnames(everQ2) == "f.29018.0.0")]<-"Feelings of tiredness"
+colnames(everQ2)[which(colnames(everQ2) == "f.29021.gain")]<-"Gained weight"
+colnames(everQ2)[which(colnames(everQ2) == "f.29021.loss")]<-"Lost weight"
+colnames(everQ2)[which(colnames(everQ2) == "f.29023.0.0")]<-"Trouble falling asleep"
+colnames(everQ2)[which(colnames(everQ2) == "f.29025.0.0")]<-"Sleeping too much"
+colnames(everQ2)[which(colnames(everQ2) == "f.29024.0.0")]<-"Waking too early"
+colnames(everQ2)[which(colnames(everQ2) == "f.29026.0.0")]<-"Difficulty concentrating"
+colnames(everQ2)[which(colnames(everQ2) == "f.29027.0.0")]<-"Feelings of worthlessness"
+colnames(everQ2)[which(colnames(everQ2) == "f.29029.0.0")]<-"Thoughts of death"
 
-groupE$f.29002.0.0[which(groupE$f.29002.0.0 < 0)]<-NA
-groupE$f.29002.0.0[which(groupE$f.29002.0.0 < 2)]<-0
-groupE$f.29002.0.0[which(groupE$f.29002.0.0 >= 2)]<-1
-groupE$f.29007.0.0[which(groupE$f.29007.0.0 < 0)]<-NA
-groupE$f.29007.0.0[which(groupE$f.29007.0.0 < 2)]<-0
-groupE$f.29007.0.0[which(groupE$f.29007.0.0 >= 2)]<-1
-groupE$f.29003.0.0[which(groupE$f.29003.0.0 < 0)]<-NA
-groupE$f.29003.0.0[which(groupE$f.29003.0.0 < 2)]<-0
-groupE$f.29003.0.0[which(groupE$f.29003.0.0 >= 2)]<-1
-groupE$f.29008.0.0[which(groupE$f.29008.0.0 < 0)]<-NA
-groupE$f.29008.0.0[which(groupE$f.29008.0.0 < 2)]<-0
-groupE$f.29008.0.0[which(groupE$f.29008.0.0 >= 2)]<-1
-groupE$f.29004.0.0[which(groupE$f.29004.0.0 < 0)]<-NA
-groupE$f.29004.0.0[which(groupE$f.29004.0.0 < 2)]<-0
-groupE$f.29004.0.0[which(groupE$f.29004.0.0 >= 2)]<-1
-groupE$f.29009.0.0[which(groupE$f.29009.0.0 < 0)]<-NA
-groupE$f.29009.0.0[which(groupE$f.29009.0.0 < 2)]<-0
-groupE$f.29009.0.0[which(groupE$f.29009.0.0 >= 2)]<-1
-groupE$f.29005.0.0[which(groupE$f.29005.0.0 < 0)]<-NA
-groupE$f.29005.0.0[which(groupE$f.29005.0.0 < 2)]<-0
-groupE$f.29005.0.0[which(groupE$f.29005.0.0 >= 2)]<-1
-groupE$f.29006.0.0[which(groupE$f.29006.0.0 < 0)]<-NA
-groupE$f.29006.0.0[which(groupE$f.29006.0.0 < 2)]<-0
-groupE$f.29006.0.0[which(groupE$f.29006.0.0 >= 2)]<-1
-groupE$f.29010.0.0[which(groupE$f.29010.0.0 < 0)]<-NA
-groupE$f.29010.0.0[which(groupE$f.29010.0.0 >= 1)]<-1
+row.names(everQ2)<-everQ2$f.eid
 
-colnames(groupE)[which(colnames(groupE) == "f.29002.0.0")]<-"Lack of interest or pleasure"
-colnames(groupE)[which(colnames(groupE) == "f.29003.0.0")]<-"Feelings of depression"
-colnames(groupE)[which(colnames(groupE) == "f.29005.0.0")]<-"Tiredness or low energy"
-colnames(groupE)[which(colnames(groupE) == "f.29004.0.0")]<-"Over or under sleeping"
-colnames(groupE)[which(colnames(groupE) == "f.29007.0.0")]<-"Feelings of inadequacy"
-colnames(groupE)[which(colnames(groupE) == "f.29008.0.0")]<-"Trouble concentrating"
-colnames(groupE)[which(colnames(groupE) == "f.29006.0.0")]<-"Changes in appetite"
-colnames(groupE)[which(colnames(groupE) == "f.29010.0.0")]<-"Suicidal thoughts or self-harm"
-colnames(groupE)[which(colnames(groupE) == "f.29009.0.0")]<-"Psychomotor changes"
-
-row.names(groupE)<-groupE$f.eid
-
-saveRDS(groupE[,c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"groupE.rds")
-saveRDS(groupE[which(groupE$f.31.0.0 == 1),c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"groupEmales.rds")
-saveRDS(groupE[which(groupE$f.31.0.0 == 0),c("Lack of interest or pleasure","Feelings of depression","Tiredness or low energy","Over or under sleeping","Feelings of inadequacy","Trouble concentrating","Changes in appetite","Suicidal thoughts or self-harm","Psychomotor changes")],"groupEfemales.rds")
-
-
-## GroupF Well-being PHQ Ordinal
-
-groupF$f.29002.0.0[which(groupF$f.29002.0.0 < 0)]<-NA
-groupF$f.29002.0.0<-groupF$f.29002.0.0+1
-groupF$f.29007.0.0[which(groupF$f.29007.0.0 < 0)]<-NA
-groupF$f.29007.0.0<-groupF$f.29007.0.0+1
-groupF$f.29003.0.0[which(groupF$f.29003.0.0 < 0)]<-NA
-groupF$f.29003.0.0<-groupF$f.29003.0.0+1
-groupF$f.29008.0.0[which(groupF$f.29008.0.0 < 0)]<-NA
-groupF$f.29008.0.0<-groupF$f.29008.0.0+1
-groupF$f.29004.0.0[which(groupF$f.29004.0.0 < 0)]<-NA
-groupF$f.29004.0.0<-groupF$f.29004.0.0+1
-groupF$f.29009.0.0[which(groupF$f.29009.0.0 < 0)]<-NA
-groupF$f.29009.0.0<-groupF$f.29009.0.0+1
-groupF$f.29005.0.0[which(groupF$f.29005.0.0 < 0)]<-NA
-groupF$f.29005.0.0<-groupF$f.29005.0.0+1
-groupF$f.29006.0.0[which(groupF$f.29006.0.0 < 0)]<-NA
-groupF$f.29006.0.0<-groupF$f.29006.0.0+1
-groupF$f.29010.0.0[which(groupF$f.29010.0.0 < 0)]<-NA
-groupF$f.29010.0.0<-groupF$f.29010.0.0+1
-
-row.names(groupF)<-groupF$f.eid
-
-saveRDS(groupF[,c("f.29002.0.0","f.29007.0.0","f.29003.0.0","f.29008.0.0","f.29004.0.0","f.29009.0.0","f.29005.0.0","f.29006.0.0","f.29010.0.0")],"groupF.rds")
-saveRDS(groupF[which(groupF$f.31.0.0 == 1),c("f.29002.0.0","f.29007.0.0","f.29003.0.0","f.29008.0.0","f.29004.0.0","f.29009.0.0","f.29005.0.0","f.29006.0.0","f.29010.0.0")],"groupFmales.rds")
-saveRDS(groupF[which(groupF$f.31.0.0 == 0),c("f.29002.0.0","f.29007.0.0","f.29003.0.0","f.29008.0.0","f.29004.0.0","f.29009.0.0","f.29005.0.0","f.29006.0.0","f.29010.0.0")],"groupFfemales.rds")
-
-
-## GroupG Well-being CIDI 8 questions
-
-groupG$f.29011.0.0[which(groupG$f.29011.0.0 < 0)]<-NA
-groupG$f.29012.0.0[which(groupG$f.29012.0.0 < 0)]<-NA
-groupG$f.29018.0.0[which(groupG$f.29018.0.0 < 0)]<-NA
-groupG$f.29021.0.0[which(groupG$f.29021.0.0 < 0)]<-NA
-groupG$f.29021.0.0[which(groupG$f.29021.0.0 < 3)]<-1
-groupG$f.29021.0.0[which(groupG$f.29021.0.0 == 3)]<-0
-groupG$f.29022.0.0[which(groupG$f.29022.0.0 < 0)]<-NA
-groupG$f.29026.0.0[which(groupG$f.29026.0.0 < 0)]<-NA
-groupG$f.29027.0.0[which(groupG$f.29027.0.0 < 0)]<-NA
-groupG$f.29029.0.0[which(groupG$f.29029.0.0 < 0)]<-NA
-
-
-colnames(groupG)[which(colnames(groupG) == "f.29012.0.0")]<-"Loss of interest in normal activities"
-colnames(groupG)[which(colnames(groupG) == "f.29011.0.0")]<-"Feelings of depression"
-colnames(groupG)[which(colnames(groupG) == "f.29018.0.0")]<-"Feelings of tiredness"
-colnames(groupG)[which(colnames(groupG) == "f.29022.0.0")]<-"Sleep changes"
-colnames(groupG)[which(colnames(groupG) == "f.29027.0.0")]<-"Feelings of worthlessness"
-colnames(groupG)[which(colnames(groupG) == "f.29026.0.0")]<-"Difficulty concentrating"
-colnames(groupG)[which(colnames(groupG) == "f.29021.0.0")]<-"Weight changes"
-colnames(groupG)[which(colnames(groupG) == "f.29029.0.0")]<-"Thoughts of death"
-
-
-row.names(groupG)<-groupG$f.eid
-
-saveRDS(groupG[,c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Sleep changes","Feelings of worthlessness","Difficulty concentrating","Weight changes","Thoughts of death")],"groupG.rds")
-saveRDS(groupG[which(groupG$f.31.0.0 == 1),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Sleep changes","Feelings of worthlessness","Difficulty concentrating","Weight changes","Thoughts of death")],"groupGmales.rds")
-saveRDS(groupG[which(groupG$f.31.0.0 == 0),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Sleep changes","Feelings of worthlessness","Difficulty concentrating","Weight changes","Thoughts of death")],"groupGfemales.rds")
-
-
-## GroupH Well-being CIDI 11 questions
-
-
-groupH$f.29011.0.0[which(groupH$f.29011.0.0 < 0)]<-NA
-groupH$f.29012.0.0[which(groupH$f.29012.0.0 < 0)]<-NA
-groupH$f.29018.0.0[which(groupH$f.29018.0.0 < 0)]<-NA
-groupH$f.29021.gain<-NA
-groupH$f.29021.gain[which(groupH$f.29021.0.0 == 0)]<-1
-groupH$f.29021.gain[which(groupH$f.29021.0.0 == 1)]<-0
-groupH$f.29021.gain[which(groupH$f.29021.0.0 == 3)]<-0
-groupH$f.29021.loss<-NA
-groupH$f.29021.loss[which(groupH$f.29021.0.0 == 0)]<-0
-groupH$f.29021.loss[which(groupH$f.29021.0.0 == 1)]<-1
-groupH$f.29021.loss[which(groupH$f.29021.0.0 == 3)]<-0
-groupH$f.29026.0.0[which(groupH$f.29026.0.0 < 0)]<-NA
-groupH$f.29027.0.0[which(groupH$f.29027.0.0 < 0)]<-NA
-groupH$f.29029.0.0[which(groupH$f.29029.0.0 < 0)]<-NA
-
-colnames(groupH)[which(colnames(groupH) == "f.29011.0.0")]<-"Feelings of depression"
-colnames(groupH)[which(colnames(groupH) == "f.29012.0.0")]<-"Loss of interest in normal activities"
-colnames(groupH)[which(colnames(groupH) == "f.29018.0.0")]<-"Feelings of tiredness"
-colnames(groupH)[which(colnames(groupH) == "f.29021.gain")]<-"Gained weight"
-colnames(groupH)[which(colnames(groupH) == "f.29021.loss")]<-"Lost weight"
-colnames(groupH)[which(colnames(groupH) == "f.29023.0.0")]<-"Trouble falling asleep"
-colnames(groupH)[which(colnames(groupH) == "f.29025.0.0")]<-"Sleeping too much"
-colnames(groupH)[which(colnames(groupH) == "f.29024.0.0")]<-"Waking too early"
-colnames(groupH)[which(colnames(groupH) == "f.29026.0.0")]<-"Difficulty concentrating"
-colnames(groupH)[which(colnames(groupH) == "f.29027.0.0")]<-"Feelings of worthlessness"
-colnames(groupH)[which(colnames(groupH) == "f.29029.0.0")]<-"Thoughts of death"
-
-row.names(groupH)<-groupH$f.eid
-
-saveRDS(groupH[,c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"groupH.rds")
-saveRDS(groupH[which(groupH$f.31.0.0 == 1),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"groupHmales.rds")
-saveRDS(groupH[which(groupH$f.31.0.0 == 0),c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"groupHfemales.rds")
-
-##
-
-library(VennDiagram)
-
-## https://stackoverflow.com/questions/74869486/how-to-make-a-venn-diagram-with-venndiagram-for-4-sets-in-r 
-
-## 1 is MHQ PHQ
-## 2 is well-being PHQ
-## 3 is MHQ CIDI
-## 4 is well-being CIDI
-
-area1<-nrow(data[which(data$PHQ9.No.Info == 0),])
-area2<-nrow(data[which(data$wbPHQ9.No.Info == 0),])
-area3<-nrow(data[which(data$CIDI.MDD.No.Info==0),])
-area4<-nrow(data[which(data$wbCIDI.MDD.No.Info==0),])
-n12<-nrow(data[which(data$PHQ9.No.Info == 0 & data$wbPHQ9.No.Info == 0),])
-n13<-nrow(data[which(data$PHQ9.No.Info == 0 & data$CIDI.MDD.No.Info==0),])
-n14<-nrow(data[which(data$PHQ9.No.Info == 0 & data$wbCIDI.MDD.No.Info==0),])
-n23<-nrow(data[which(data$wbPHQ9.No.Info == 0 & data$CIDI.MDD.No.Info==0),])
-n24<-nrow(data[which(data$wbPHQ9.No.Info == 0 & data$wbCIDI.MDD.No.Info==0),])
-n34<-nrow(data[which(data$CIDI.MDD.No.Info==0 & data$wbCIDI.MDD.No.Info==0),])
-n123<-nrow(data[which(data$PHQ9.No.Info == 0 & data$wbPHQ9.No.Info == 0 & data$CIDI.MDD.No.Info==0),])
-n124<-nrow(data[which(data$PHQ9.No.Info == 0 & data$wbPHQ9.No.Info == 0 & data$wbCIDI.MDD.No.Info==0),])
-n134<-nrow(data[which(data$PHQ9.No.Info == 0 & data$CIDI.MDD.No.Info==0 & data$wbCIDI.MDD.No.Info==0),])
-n234<-nrow(data[which(data$wbPHQ9.No.Info == 0 & data$CIDI.MDD.No.Info==0 & data$wbCIDI.MDD.No.Info==0),])
-n1234<-nrow(data[which(data$PHQ9.No.Info == 0 & data$wbPHQ9.No.Info == 0 & data$CIDI.MDD.No.Info==0 & data$wbCIDI.MDD.No.Info==0),])
-
-#nrow(data[which(data$PHQ9.No.Info == 0 & data$wbPHQ9.No.Info == 0 & data$CIDI.MDD.No.Info==0 & data$wbCIDI.MDD.No.Info==0),])
-
-draw.quad.venn(area1, area2, area3, area4, n12, n13, n14, n23, n24, n34, n123, n124, n134, n234, n1234,
-  category = c("MHQ PHQ9", "Well-being PHQ", "MHQ CIDI-SF", "Well-being CIDI-SF"),
-  fill = c("orange", "red", "green", "blue"),
-  cex = 2,
-  cat.cex = 2,
-  cat.col = c("orange", "red", "green", "blue")
-)
-
-
-
-area1<-nrow(data[which(data$PHQ9.Case == 1),])
-area2<-nrow(data[which(data$wbPHQ9.Case == 1),])
-area3<-nrow(data[which(data$CIDI.MDD.Case==1),])
-area4<-nrow(data[which(data$wbCIDI.MDD.Case==1),])
-n12<-nrow(data[which(data$PHQ9.Case == 1 & data$wbPHQ9.Case == 1),])
-n13<-nrow(data[which(data$PHQ9.Case == 1 & data$CIDI.MDD.Case==1),])
-n14<-nrow(data[which(data$PHQ9.Case == 1 & data$wbCIDI.MDD.Case==1),])
-n23<-nrow(data[which(data$wbPHQ9.Case == 1 & data$CIDI.MDD.Case==1),])
-n24<-nrow(data[which(data$wbPHQ9.Case == 1 & data$wbCIDI.MDD.Case==1),])
-n34<-nrow(data[which(data$CIDI.MDD.Case==1 & data$wbCIDI.MDD.Case==1),])
-n123<-nrow(data[which(data$PHQ9.Case == 1 & data$wbPHQ9.Case == 1 & data$CIDI.MDD.Case==1),])
-n124<-nrow(data[which(data$PHQ9.Case == 1 & data$wbPHQ9.Case == 1 & data$wbCIDI.MDD.Case==1),])
-n134<-nrow(data[which(data$PHQ9.Case == 1 & data$CIDI.MDD.Case==1 & data$wbCIDI.MDD.Case==1),])
-n234<-nrow(data[which(data$wbPHQ9.Case == 1 & data$CIDI.MDD.Case==1 & data$wbCIDI.MDD.Case==1),])
-n1234<-nrow(data[which(data$PHQ9.Case == 1 & data$wbPHQ9.Case == 1 & data$CIDI.MDD.Case==1 & data$wbCIDI.MDD.Case==1),])
-
-draw.quad.venn(area1, area2, area3, area4, n12, n13, n14, n23, n24, n34, n123, n124, n134, n234, n1234,
-  category = c("MHQ PHQ9", "Well-being PHQ", "MHQ CIDI-SF", "Well-being CIDI-SF"),
-  fill = c("orange", "red", "green", "blue"),
-  cex = 2,
-  cat.cex = 2,
-  cat.col = c("orange", "red", "green", "blue")
-)
-
+saveRDS(everQ2[,c("Loss of interest in normal activities","Feelings of depression","Feelings of tiredness","Trouble falling asleep","Sleeping too much","Waking too early","Feelings of worthlessness","Difficulty concentrating","Gained weight","Lost weight","Thoughts of death")],"everQ2.rds")
